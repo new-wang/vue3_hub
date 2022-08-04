@@ -2,7 +2,10 @@
 import { ref } from 'vue'
 
 defineProps({
-  msg: String
+  msg: {
+    type: String,
+    default: 'default msg'
+  }
 })
 
 const count = ref(0)
