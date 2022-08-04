@@ -8,8 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .js,.ts,.tsx,.vue",
-    "lint:fix": "eslint . --ext .js,.ts,.tsx,.vue --fix",
-    "prepare": "husky install"
+    "lint:fix": "eslint . --ext .js,.ts,.tsx,.vue --fix"
   },
   "dependencies": {
     "vue": "^3.2.37"
@@ -20,12 +19,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.3.0",
-    "husky": "^8.0.0",
-    "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "vite": "^3.0.0"
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx,vue}": "eslint"
   }
 }
