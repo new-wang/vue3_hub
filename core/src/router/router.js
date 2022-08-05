@@ -3,6 +3,7 @@ import { createRouter,createWebHashHistory } from 'vue-router'
 import Login from "views/auth/login.vue";
 import register from "views/auth/register.vue";
 
+
 const router = createRouter({
     history: createWebHashHistory(),
     routes: [
