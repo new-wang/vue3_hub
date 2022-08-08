@@ -18,6 +18,11 @@
 <script>
 import { reactive, toRefs } from 'vue'
 
+// 数据mock测试
+fetch("/api/users")
+  .then(response => response.json())
+  .then(json => console.log('proxy:',json)).catch(err=>console.log('err',err));
+
 export default {
   setup () {
     const state = reactive({
