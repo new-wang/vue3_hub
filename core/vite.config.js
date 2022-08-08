@@ -20,7 +20,8 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
       'comps': path.resolve(__dirname, 'src/components'),
       'plugin': path.resolve(__dirname, 'src/plugins'),
-      'views': path.resolve(__dirname, 'src/views')
+      'views': path.resolve(__dirname, 'src/views'),
+      'styles': path.resolve(__dirname, 'src/styles')
     }
   },
   proxy: {
