@@ -21,7 +21,9 @@ export default defineConfig({
       'comps': path.resolve(__dirname, 'src/components'),
       'plugin': path.resolve(__dirname, 'src/plugins'),
       'views': path.resolve(__dirname, 'src/views'),
-      'styles': path.resolve(__dirname, 'src/styles')
+      'styles': path.resolve(__dirname, 'src/styles'),
+      'config': path.resolve(__dirname, 'config'),
+      'apis': path.resolve(__dirname, 'src/apis')
     }
   },
   proxy: {

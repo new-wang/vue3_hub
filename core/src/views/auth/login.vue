@@ -18,10 +18,17 @@
 <script>
 import { reactive, toRefs } from 'vue'
 
+import {getUser} from "apis/test"
+
+getUser({'userID':231})
+.then(res=>console.log('res',res))
+.catch(err=>console.log('err',err))
+
 // 数据mock测试
 fetch("/api/users")
   .then(response => response.json())
-  .then(json => console.log('proxy:',json)).catch(err=>console.log('err',err));
+  .then(json => console.log('proxy:',json))
+  .catch(err=>console.log('err',err));
 
 export default {
   setup () {
