@@ -23,7 +23,9 @@ export default defineConfig({
       'views': path.resolve(__dirname, 'src/views'),
       'styles': path.resolve(__dirname, 'src/styles'),
       'config': path.resolve(__dirname, 'config'),
-      'apis': path.resolve(__dirname, 'src/apis')
+      'apis': path.resolve(__dirname, 'src/apis'),
+      'layouts': path.resolve(__dirname, 'layouts'),
+      'utils': path.resolve(__dirname, 'src/utils')
     }
   },
   proxy: {
