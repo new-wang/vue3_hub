@@ -19,7 +19,7 @@ const service = axios.create({
 // 请求拦截
 service.interceptors.request.use(
     (config) => {
-        console.log('config',config)
+        // console.log('config',config)
         // 指定请求令牌
         // if (store.getters.token) {
         // // 自定义令牌的字段名为X-Token，根据咱们后台再做修改

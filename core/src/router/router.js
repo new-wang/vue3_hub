@@ -2,6 +2,8 @@ import { createRouter,createWebHashHistory } from 'vue-router'
 
 import Layout from "layouts/index.vue";
 
+import Login from "layouts/login.vue";
+
 import userRouter from './modules/user.js'
 
 /**
@@ -21,13 +23,32 @@ import userRouter from './modules/user.js'
     activeMenu: '/example/list'  如果设置一个path, sidebar将会在高亮匹配项
   }
  */
+const constantRoutes = [
+  {
+    path: "/auth",
+    hidden: true,
+    redirect: "/auth/login",
+    name: "login",
+    component: Login,
+    children:[
+      {
+        path: "login",
+        name:"login",
+        component: () => import("views/auth/login.vue"),
+        meta: { title: "登录", icon: "el-icon-s-home" },
+      },
+      {
+        path: "register",
+        name: "register",
+        component: () => import("views/auth/register.vue"),
+        meta: { title: "注册", icon: "el-icon-s-home" },
+      }
+    ]
+  }
+]
+
   export const routes = [
-  // {
-  //   path: "/login",
-  //   meta: { title: "导航" },
-  //   name: "login",
-  //   component: () => import("views/auth/login.vue"),
-  // },
+  ...constantRoutes,
   {
     path: "/",
     redirect: "/home",
