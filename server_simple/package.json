@@ -10,6 +10,7 @@
     "egg": "^2",
     "egg-router-group": "^1.1.0",
     "egg-scripts": "^2",
+    "egg-swagger-doc-feat": "^2.2.14",
     "egg-validate": "^2.0.2",
     "svg-captcha": "^1.4.0"
   },

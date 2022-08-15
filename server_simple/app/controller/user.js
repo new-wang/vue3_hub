@@ -3,7 +3,11 @@ const Controller = require('egg').Controller;
 class UserController extends Controller {
     async index() {
       const { ctx } = this;
-      ctx.body = 'hi, user';
+      const res = {
+        token:"1545"
+      }
+      ctx.helper.success({ ctx, res});
+      // ctx.body = 'hi, user';
     }
 
     async register() {

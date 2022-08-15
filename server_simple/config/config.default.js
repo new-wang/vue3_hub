@@ -24,6 +24,23 @@ module.exports = appInfo => {
     // myAppName: 'egg',
   };
 
+  // swaggerdoc 配置
+  config.swaggerdoc = {
+    dirScanner: './app/controller', //扫描文件夹地址
+    apiInfo: { //swaggerdoc 标题
+      title: '接⼝文档',
+      description: '项目接⼝ swagger-ui for egg',
+      version: '1.0.0',
+    },
+    schemes: ['http', 'https'],
+    consumes: ['application/json'],
+    produces: ['application/json'],
+    enableSecurity: false,
+    // enableValidate: true, 
+    routerMap: true, // 自动产生路由映射
+    enable: true,
+  }
+
   return {
     ...config,
     ...userConfig,
