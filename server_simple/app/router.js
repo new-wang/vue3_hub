@@ -6,4 +6,15 @@
 module.exports = app => {
   const { router, controller } = app;
   router.get('/', controller.home.index);
+
+  router.group({ name: 'user', prefix: '/user'}, router => {
+    const {
+      register,
+      login
+    } = controller.user
+
+    router.post('/register', register)
+    router.post('/login', login)
+  })
+
 };
