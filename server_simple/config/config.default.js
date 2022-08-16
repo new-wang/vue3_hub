@@ -33,11 +33,11 @@ module.exports = appInfo => {
       version: '1.0.0',
     },
     schemes: ['http', 'https'],
-    consumes: ['application/json'],
-    produces: ['application/json'],
+    consumes: ['application/json'],// 指定处理请求的提交内容类型（Content-Type），例如application/json, text/html。
+    produces: ['application/json','image/svg+xml'],
     enableSecurity: false,
     // enableValidate: true, 
-    routerMap: true, // 自动产生路由映射
+    routerMap: true, // 允许自动生成API路由
     enable: true,
   }
 
