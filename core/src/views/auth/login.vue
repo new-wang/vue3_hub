@@ -26,8 +26,9 @@
 
 <script>
 import { computed, reactive, toRefs } from 'vue'
-
+import config from "config/http";
 import { sendcode } from "apis/utils"
+const { url } = config
 
 // 数据mock测试
 // fetch("/api/users")
@@ -44,7 +45,7 @@ export default {
         emailcode: ''
       },
       code: {
-        captcha: '/api/captcha',
+        captcha: url + '/util/captcha',
       },
       send: {
         timer: 0
@@ -52,12 +53,12 @@ export default {
     })
 
     const resetCaptcha = (params) => {
-      state.code.captcha = '/api/captcha?_t'+new Date().getTime()
+      state.code.captcha =  url + '/util/captcha?_t'+new Date().getTime()
     }
 
     const sendEmailCode = async () => {
       // 邮箱验证码
-      await sendcode();
+      await sendcode({email:state.form.email});
       state.send.timer = 10;
        state.timer = setInterval(()=>{
         state.send.timer -= 1

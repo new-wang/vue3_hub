@@ -28,11 +28,13 @@ export default defineConfig({
       'utils': path.resolve(__dirname, 'src/utils')
     }
   },
-  proxy: {
-    '/api': {
-      target: 'http://localhost:7001',
-      changeOrigin: true,
-      rewrite: path => path.replace(/^\/api/, '')
+  server:{
+    proxy: {
+      '/api': {
+        target: 'http://localhost:7001',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, '')
+      }
     }
   }
 })

@@ -11,7 +11,7 @@ exports.success = ({ ctx, res = null, msg = '处理成功' }) => {
 }
 
 // 处理失败响应
-exports.error = ({ ctx, erros = {}, msg = '处理成功', code = -1 }) => {
+exports.error = ({ ctx, msg = '处理成功', erros = {}, code = -1 }) => {
     ctx.body = {
         code,
         erros,
