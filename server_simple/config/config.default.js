@@ -22,6 +22,14 @@ module.exports = appInfo => {
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
+    sequelize: {
+      dialect: "mysql",
+      host: "47.98.176.161",
+      port: 3306,
+      username: "root",
+      password: "example",
+      database: "test" //数据库名
+    }
   };
 
   // swaggerdoc 配置

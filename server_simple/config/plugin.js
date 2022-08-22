@@ -19,5 +19,10 @@ module.exports = {
   validate: {
     enable: true,
     package: 'egg-validate',
+  },
+  // 数据库连接
+  sequelize: {
+    enable: true,
+    package: 'egg-sequelize'
   }
 };

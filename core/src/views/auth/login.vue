@@ -109,7 +109,7 @@ export default {
     }
 
     const sendText = computed(() => {
-      if (state.send.time <= 0) {
+      if (state.send.timer <= 0) {
         return "发送"
       }
       return `${state.send.timer}s后发送`
