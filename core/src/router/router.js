@@ -1,5 +1,14 @@
 import { createRouter,createWebHashHistory } from 'vue-router'
 
+// 守卫
+// import { onBeforeRouteLeave } from "vue-router";
+// onBeforeRouteLeave((to, from) => {
+//   const answer = window.confirm("你确定要离开当前页面吗？");
+//   if (!answer) {
+//     return false;
+//   }
+// });
+
 import Layout from "layouts/index.vue";
 
 import Login from "layouts/login.vue";
@@ -25,20 +34,19 @@ import userRouter from './modules/user.js'
  */
 const constantRoutes = [
   {
-    path: "/auth",
+    path: "/login",
     hidden: true,
-    redirect: "/auth/login",
     name: "login",
     component: Login,
     children:[
       {
-        path: "login",
+        path: "",
         name:"login",
         component: () => import("views/auth/login.vue"),
         meta: { title: "登录", icon: "el-icon-s-home" },
       },
       {
-        path: "register",
+        path: "/register",
         name: "register",
         component: () => import("views/auth/register.vue"),
         meta: { title: "注册", icon: "el-icon-s-home" },
@@ -47,16 +55,16 @@ const constantRoutes = [
   }
 ]
 
-  export const routes = [
+export const routes = [
   ...constantRoutes,
   {
     path: "/",
-    redirect: "/home",
+    // redirect: "/home",
     component: Layout,
     meta: { title: "导航", icon: "el-icon-s-home" },
     children: [
       {
-        path: "home",
+        path: "",
         component: () => import("views/index.vue"),
         name: "Home",
         meta: { title: "首页", icon: "el-icon-s-home" },

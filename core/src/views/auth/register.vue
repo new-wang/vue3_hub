@@ -32,9 +32,12 @@
 
 <script setup>
 import { reactive, ref, toRefs } from 'vue';
+import { ElMessageBox } from 'element-plus'
 import config from "config/http";
+import { useRouter } from 'vue-router';
 const { url } = config;
 import { register } from "apis/user";
+const router = useRouter()
 
 const state = reactive({
     form: {
@@ -51,45 +54,54 @@ const state = reactive({
         timer: 0
     },
     rules: {
-        email:[
-          { required:true, message:"请输入邮箱" },
-          { type:'email', message:"请输入正确的邮箱格式" },
+        email: [
+            { required: true, message: "请输入邮箱" },
+            { type: 'email', message: "请输入正确的邮箱格式" },
         ],
-        captcha:[
-          { required:true, message:"请输入验证码" },
+        captcha: [
+            { required: true, message: "请输入验证码" },
         ],
-        nickname:[
-          { required:true, message:"请输入昵称" },
+        nickname: [
+            { required: true, message: "请输入昵称" },
         ],
-        passwd:[
-          { required:true, pattern:/^[\w_-]{6,12}$/g, message:"请输入6~12位密码" },
+        passwd: [
+            { required: true, pattern: /^[\w_-]{6,12}$/g, message: "请输入6~12位密码" },
         ],
-        repasswd:[
-          { required:true, message:"请再次输入密码" },
-          { validator:(rule,value,callback)=>{
-            if(value!== state.form.passwd){
-              callback(new Error('两次密码不一致'))
+        repasswd: [
+            { required: true, message: "请再次输入密码" },
+            {
+                validator: (rule, value, callback) => {
+                    if (value !== state.form.passwd) {
+                        callback(new Error('两次密码不一致'))
+                    }
+                    callback()
+                }
             }
-            callback()
-          }}
         ],
     }
 })
 const { form, code, rules } = { ...toRefs(state) }
 
-const resetCaptcha = ()=>{
+const resetCaptcha = () => {
     state.code.captcha = url + '/util/captcha?_t' + new Date().getTime()
 }
 
 const registerFormRef = ref()
 
-const handleRegister = () => {
+const handleRegister = async () => {
     registerFormRef.value.validate(async valid => {
-        if(valid){
+        if (valid) {
             let ret = await register(state.form)
-            console.log('ret :>> ', ret);
+            if (ret.code == 0) {
+                ElMessageBox.alert('注册成功', '成功', {
+                    confirmButtonText: '去登录',
+                    callback: () => {
+                        router.push('/login')
+                    }
+                })
+            }
         }
-      })
+    })
 }
 
 
