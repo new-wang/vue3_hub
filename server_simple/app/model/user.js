@@ -11,7 +11,7 @@ module.exports = app => {
                 autoIncrement:true
             },
             email: STRING,
-            passwd: STRING,
+            password: STRING,
             nickname: {
                 type:STRING(30),
                 comment:"昵称",

@@ -6,7 +6,7 @@ const HashSalt = ':wx@good!@123'
 class UserService extends Service {
   async register(payload) {
     const { ctx } = this
-    const { email, passwd, captcha, nickname } = payload
+    const { email, password, captcha, nickname } = payload
     if (captcha.toUpperCase() !== ctx.session.captcha.toUpperCase()) {
       ctx.throw(422, '验证码错误')
     }
@@ -18,7 +18,7 @@ class UserService extends Service {
       const res = await ctx.model.User.create({
         email,
         nickname,
-        passwd: md5(passwd + HashSalt),
+        password: md5(password + HashSalt),
       })
       if (res._id) {
         ctx.helper.success({ res, msg: '注册成功' })

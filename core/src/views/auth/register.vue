@@ -16,8 +16,8 @@
             <el-form-item prop="nickname" label="昵称">
                 <el-input v-model="form.nickname" placeholder="请输入昵称"></el-input>
             </el-form-item>
-            <el-form-item prop="passwd" label="密码">
-                <el-input type="password" v-model="form.passwd" placeholder="请输入密码"></el-input>
+            <el-form-item prop="password" label="密码">
+                <el-input type="password" v-model="form.password" placeholder="请输入密码"></el-input>
             </el-form-item>
             <el-form-item prop="repasswd" label="确认密码">
                 <el-input type="password" v-model="form.repasswd" placeholder="请再次输入密码"></el-input>
@@ -43,7 +43,7 @@ const state = reactive({
     form: {
         email: '',
         captcha: '',
-        passwd: '',
+        password: '',
         repasswd: '',
         nickname: ''
     },

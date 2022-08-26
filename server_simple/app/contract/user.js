@@ -23,7 +23,7 @@ module.exports = {
             description: '昵称',
             example: '老6啊'
         },
-        passwd: {
+        password: {
             type:"string", 
             required: true,
             description: '密码',
