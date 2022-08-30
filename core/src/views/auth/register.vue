@@ -35,8 +35,9 @@ import { reactive, ref, toRefs } from 'vue';
 import { ElMessageBox } from 'element-plus'
 import config from "config/http";
 import { useRouter } from 'vue-router';
-const { url } = config;
 import { register } from "apis/user";
+
+const { url } = config;
 const router = useRouter()
 
 const state = reactive({
