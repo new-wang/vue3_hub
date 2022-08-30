@@ -63,5 +63,8 @@ module.exports = appInfo => {
   return {
     ...config,
     ...userConfig,
+    jwt: {
+      secret: '@wx!123Abc!:',
+    },
   };
 };

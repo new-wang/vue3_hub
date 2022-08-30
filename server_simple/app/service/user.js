@@ -19,9 +19,10 @@ class UserService extends Service {
         email,
         nickname,
         password: md5(password + HashSalt),
+        // password: ctx.genHash(password)
       })
-      if (res._id) {
-        ctx.helper.success({ res, msg: '注册成功' })
+      if (res.id) {
+        return res
       }
     }
   }
