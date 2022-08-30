@@ -142,7 +142,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.form-btn::v-deep .el-form-item__content{
+// .form-btn::v-deep .el-form-item__content{
+//   justify-content: space-around;
+// }
+.form-btn::v-deep(.el-form-item__content){
   justify-content: space-around;
 }
+
 </style>
