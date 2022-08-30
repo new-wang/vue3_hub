@@ -67,21 +67,34 @@ export const routes = [
         path: "",
         component: () => import("views/index.vue"),
         name: "Home",
-        meta: { title: "首页", icon: "el-icon-s-home" },
+        meta: { 
+          title: "首页", 
+          // icon: "el-icon-s-home" 
+        },
         children: [
-          {
-            path: ":id",
-            component: () => import("views/test/test.vue"),
-            name: "test",
-            hidden: true,
-            meta: {
-              title: "详情",
-              icon: "el-icon-s-home",
-              activeMenu: "/home",
-            },
-          },
+          // {
+          //   path: ":id",
+          //   component: () => import("views/test/test.vue"),
+          //   name: "test",
+          //   hidden: true,
+          //   meta: {
+          //     title: "详情",
+          //     icon: "el-icon-s-home",
+          //     activeMenu: "/home",
+          //   },
+          // }
         ],
       },
+      {
+        path: "test",
+        component: () => import("views/test/test.vue"),
+        name: "test",
+        meta: {
+          title: "测试",
+          // icon: "el-icon-s-home",
+          activeMenu: "/test",
+        },
+      }
     ],
   },
   userRouter
