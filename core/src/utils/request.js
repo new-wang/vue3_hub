@@ -49,33 +49,33 @@ service.interceptors.response.use(
      */
     (response) => {
         const res = response.data;
+        // 如果状态码不是0则认为有错误
+        if (res.code !== 0) {
+            ElMessage.error({
+                message: res.msg || res.error || "Error",
+                duration: 5 * 1000,
+            });
 
-        return res;
-
-        // 如果状态码不是20000则认为有错误
-        // if (res.code !== 20000) {
-        //     ElMessage.error({
-        //         message: res.message || "Error",
-        //         duration: 5 * 1000,
-        //     });
-
-        //     // 50008: 非法令牌; 50012: 其他客户端已登入; 50014: 令牌过期;
-        //     if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
-        //         // 重新登录
-        //         ElMessageBox.confirm("您已登出, 请重新登录", "确认", {
-        //             confirmButtonText: "重新登录",
-        //             cancelButtonText: "取消",
-        //             type: "warning",
-        //         }).then(() => {
-        //             pinia.dispatch("user/resetToken").then(() => {
-        //                 location.reload();
-        //             });
-        //         });
-        //     }
-        //     return Promise.reject(new Error(res.message || "Error"));
-        // } else {
-        //     return res;
-        // }
+            // 50008: 非法令牌; 50012: 其他客户端已登入; 50014: 令牌过期;
+            if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
+                // 重新登录
+                ElMessageBox.confirm("您已登出, 请重新登录", "确认", {
+                    confirmButtonText: "重新登录",
+                    cancelButtonText: "取消",
+                    type: "warning",
+                }).then(() => {
+                    pinia.dispatch("user/resetToken").then(() => {
+                        location.reload();
+                    });
+                });
+            }
+            return Promise.reject(new Error(res.msg || res.error || "Error"))
+            .catch(err=>{
+                console.log(err)
+            });
+        } else {
+            return res;
+        }
     },
     (error) => {
         console.log("err" + error); // for debug

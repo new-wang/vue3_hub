@@ -45,29 +45,26 @@ class UserController extends Controller {
     ctx.helper.success({ ctx, res })
   }
 
+  /**
+   * @summary 注册用户
+   * @description 创建用户 记录用户账户、密码、类型...
+   * @router post /user/register
+   * @request body registerUserRequest *body
+   * @response 200 baseResponse 注册成功
+   */
+  async register() {
+    const { ctx,service } = this
+    ctx.body = 'hi, user';
+    // 校验参数
+    ctx.validate(ctx.rule.registerUserRequest);
+    // // 组装参数
+    const payload = ctx.request.body || {}
+    // // 调用 Service 进行业务处理
+    const res = await service.user.register(payload)
+    // // 设置响应内容和响应状态码
+    ctx.helper.success({ ctx, res ,msg:'注册成功'})
 
-  // async index() {
-  //   const { ctx } = this;
-  //   const res = {
-  //     token:"1545"
-  //   }
-  //   ctx.helper.success({ ctx, res});
-  //   // ctx.body = 'hi, user';
-  // }
-
-  // async register() {
-  //   const { ctx } = this
-  //   // const { email, passwd, captcha, nickname } = ctx.request.body
-
-  //   ctx.body = 'hi, register';
-
-  // }
-
-  // async login() {
-  //   const { ctx } = this
-  //   // const { email, passwd, captcha, nickname } = ctx.request.body
-  //   ctx.body = 'hi, login';
-  // }
+  }
 }
 
 module.exports = UserController;

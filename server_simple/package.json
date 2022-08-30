@@ -10,8 +10,12 @@
     "egg": "^2",
     "egg-router-group": "^1.1.0",
     "egg-scripts": "^2",
+    "egg-sequelize": "^6.0.0",
     "egg-swagger-doc-feat": "^2.2.14",
     "egg-validate": "^2.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.3.0",
+    "mysql2": "^2.3.3",
     "nodemailer": "^6.7.8",
     "svg-captcha": "^1.4.0"
   },
