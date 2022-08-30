@@ -71,7 +71,7 @@ const state = reactive({
             { required: true, message: "请再次输入密码" },
             {
                 validator: (rule, value, callback) => {
-                    if (value !== state.form.passwd) {
+                    if (value !== state.form.password) {
                         callback(new Error('两次密码不一致'))
                     }
                     callback()

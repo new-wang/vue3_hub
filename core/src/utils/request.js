@@ -52,7 +52,7 @@ service.interceptors.response.use(
         // 如果状态码不是0则认为有错误
         if (res.code !== 0) {
             ElMessage.error({
-                message: res.message || res.error || "Error",
+                message: res.msg || res.error || "Error",
                 duration: 5 * 1000,
             });
 
@@ -69,7 +69,10 @@ service.interceptors.response.use(
                     });
                 });
             }
-            return Promise.reject(new Error(res.message || "Error"));
+            return Promise.reject(new Error(res.msg || res.error || "Error"))
+            .catch(err=>{
+                console.log(err)
+            });
         } else {
             return res;
         }

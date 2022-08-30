@@ -20,14 +20,14 @@
         </div>
         <el-input v-model="form.emailcode" placeholder="请输入邮件验证码"></el-input>
       </el-form-item>
-      <el-form-item prop="passwd" label="密码">
-        <el-input v-model="form.passwd" placeholder="请输入密码">
+      <el-form-item prop="password" label="密码">
+        <el-input v-model="form.password" placeholder="请输入密码">
         </el-input>
       </el-form-item>
-      <el-form-item label=" ">
-        <!-- <button @clikc.prevent></button> -->
+      <el-form-item label=" " class="form-btn">
+          <!-- <button @clikc.prevent></button> -->
         <el-button type="primary" @click.native.prevent="handleLogin" >登录</el-button>
-        <router-link to="/auth/register">
+        <router-link to="/register">
           <el-button type="primary" >注册</el-button>
         </router-link>
       </el-form-item>
@@ -40,6 +40,10 @@ import { computed, reactive, toRefs, ref, nextTick  } from 'vue'
 import config from "config/http";
 import { sendcode } from "apis/utils"
 const { url } = config
+import { login } from "apis/user";
+import { ElMessage } from 'element-plus';
+import { useRouter } from 'vue-router';
+const TOKEN_KEY = 'USER_TOKEN'
 
 // 数据mock测试
 // fetch("/api/users")
@@ -49,6 +53,7 @@ const { url } = config
 
 export default {
   setup() {
+    const router = useRouter()
     const loginFormRef = ref()
     const rules = {
       email: [
@@ -61,16 +66,16 @@ export default {
       emailcode: [
         { required: true, message: "请输入邮箱验证码" },
       ],
-      passwd: [
+      password: [
         { required: true, pattern: /^[\w_-]{6,12}$/g, message: "请输入6~12位密码" },
       ]
     }
     const state = reactive({
       form: {
-        email: '',
+        email: '1039445602@qq.com',
         captcha: '',
         emailcode: '',
-        passwd:''
+        password:''
       },
       code: {
         captcha: url + '/util/captcha',
@@ -101,9 +106,17 @@ export default {
       // nextTick(()=>{
       //   console.log('loginFormRef',loginFormRef)
       // })
-      loginFormRef.value.validate(valid => {
+      loginFormRef.value.validate(async valid => {
         if(valid){
-          console.log('login :>> ');
+          let ret = await login(state.form)
+          if(ret && ret.code == 0){
+            ElMessage.success('登陆成功')
+            // 保存token
+            localStorage.setItem(TOKEN_KEY, ret.data.token)
+            setTimeout(()=>{
+              router.push('/')
+            },500)
+          }
         }
       })
     }
@@ -129,4 +142,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.form-btn::v-deep .el-form-item__content{
+  justify-content: space-around;
+}
 </style>
