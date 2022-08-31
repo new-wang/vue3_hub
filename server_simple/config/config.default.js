@@ -17,7 +17,7 @@ module.exports = appInfo => {
 
   // add your middleware config here
   // 添加异常处理中间件
-  config.middleware = ['errorHandler'];
+  // config.middleware = ['errorHandler'];
 
   // add your user config here
   const userConfig = {
@@ -60,11 +60,19 @@ module.exports = appInfo => {
     enable: true,
   }
 
+  // jwt jsonwebtoken 用户鉴权
+  // 区分哪些需要鉴权
+  // /auth/login 不需要鉴权
+  // match /^\/api/
+  // 所有 api/xxx 需要鉴权
+  config.jwt = {
+    secret: '@wx!123Abc!:',
+    enable: true, // default is false
+    match: /^\/test/, // optional
+  }
+
   return {
     ...config,
-    ...userConfig,
-    jwt: {
-      secret: '@wx!123Abc!:',
-    },
+    ...userConfig
   };
 };

@@ -19,15 +19,15 @@ module.exports = app => {
   //   router.post('/login', login)
   // })
 
-  const jwt = app.middleware.jwt({ app })
-  router.group({
-    name:'test',
-    prefix:'/test'
-  },router => {
-    const { testJwt } = controller.test
+  // const jwt = app.middleware.jwt({ app })
+  // router.group({
+  //   name:'test',
+  //   prefix:'/test'
+  // },router => {
+  //   const { testJwt } = controller.test
 
-    // 第二个参数
-    router.post('/testJwt', jwt, testJwt)
-  })
+  //   // 第二个参数
+  //   router.post('/testJwt', jwt, testJwt)
+  // })
 
 };
