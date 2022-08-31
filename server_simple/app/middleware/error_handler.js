@@ -9,6 +9,7 @@ module.exports = (option,app) => {
         } catch (err) {
             // 异常处理
             // 上抛
+            console.log('err',err)
             app.emit('error',err,this)
             // 统一异常应答
             const status = err.status || 500

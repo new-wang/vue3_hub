@@ -24,5 +24,10 @@ module.exports = {
   sequelize: {
     enable: true,
     package: 'egg-sequelize'
+  },
+  // jsonwebtoken 用户鉴权
+  jwt: {
+    enable: true,
+    package: 'egg-jwt'
   }
 };

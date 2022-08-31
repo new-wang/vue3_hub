@@ -7,10 +7,10 @@ const userRouter = {
         title: "用户管理",
         icon: "el-icon-user-solid",
     },
-    redirect: '/user/list',
+    // redirect: '/user/list',
     component: Layout,
     children: [{
-        path: "list",
+        path: "",
         name: "用户列表",
         component: () => import('views/user/index.vue'),
         meta: {

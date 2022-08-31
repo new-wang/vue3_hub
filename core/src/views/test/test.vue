@@ -1,12 +1,16 @@
 <template>
     <div>
-        test页面
+        <el-button @click="testJwt1">
+            testJwt
+        </el-button>
     </div>
 </template>
 
-<script>
-    export default {
-        
+<script setup>
+    import { testJwt } from "apis/test"
+    const testJwt1 = async ()=>{
+        const ret = await testJwt()
+        console.log('ret :>> ', ret);
     }
 </script>
 

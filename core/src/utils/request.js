@@ -4,6 +4,7 @@ import pinia from "@/pinia/pinia";
 
 import config from "config/http";
 const { url } = config
+const TOKEN_KEY = 'USER_TOKEN'
 
 // 创建axios实例
 const service = axios.create({
@@ -11,7 +12,7 @@ const service = axios.create({
     // baseURL: import.meta.env.VITE_BASE_API,
     // baseURL: import.meta.env.VITE_BASE_API || url,
     // baseURL: url,
-    baseURL:'/api',
+    baseURL: '/api',
     // 当发送跨域请求时携带cookie
     // withCredentials: true,
     timeout: 5000,
@@ -27,6 +28,12 @@ service.interceptors.request.use(
         // config.headers["X-Token"] = pinia.getters.token;
         // }
         // config.headers["X-Token"] = "my token";
+        // 请求加token
+        const token = window.localStorage.getItem(TOKEN_KEY)
+        // 设置url白名单
+        if (token) {
+            config.headers.common['Authorization'] = 'Bearer ' + token
+        }
         return config;
     },
     (error) => {
@@ -70,9 +77,9 @@ service.interceptors.response.use(
                 });
             }
             return Promise.reject(new Error(res.msg || res.error || "Error"))
-            .catch(err=>{
-                console.log(err)
-            });
+                .catch(err => {
+                    console.log(err)
+                });
         } else {
             return res;
         }
