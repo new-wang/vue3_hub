@@ -15,6 +15,8 @@ import Login from "layouts/login.vue";
 
 import userRouter from './modules/user.js'
 
+const TOKEN_KEY = 'USER_TOKEN'
+
 /**
  * Note: 子菜单仅当路由的children.length >= 1时才出现
  *
@@ -110,7 +112,28 @@ const router = createRouter({
     //     } else {
     //         return { top: 10 };
     //     }
+    // },
+  })
+  
+  const isAuthenticated = async ()=>{
+    // 是否已登录
+    const token = window.localStorage.getItem(TOKEN_KEY)
+    return token || false;
+  }
+
+  router.beforeEach(async (to, /**from,next**/) => {
+    const noAuth = ['login','register'];
+    if( ! await isAuthenticated() && !noAuth.includes(to.name) ){
+      return "/login"
+    }
+    // else{
+    //   next()
     // }
+  })
+  router.afterEach(() => {
+    // 分析、更改页面标题、声明页面等辅助功能以及许多其他事情
+    // finish progress bar
+    // NProgress.done()
   })
 
 export default (app) => {
