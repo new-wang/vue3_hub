@@ -1,0 +1,1 @@
+import{_ as e,o as t,d as o}from"./index.6a9140fe.js";const r={setup(){return{}}};function n(s,c,a,p,_,d){return t(),o("div",null," \u7528\u6237\u7F16\u8F91\u9875\u9762 ")}const f=e(r,[["render",n]]);export{f as default};
