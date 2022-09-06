@@ -1,7 +1,7 @@
 // 解析token的中间件，也可以用egg-jwt，自己封装更适合了解原理
 const jwt = require('jsonwebtoken')
 
-module.exports = ({ app }) => {
+module.exports = (jwtoptions,app) => {
     return async function verify(ctx, next) {
         if (!ctx.request.header.authorization) {
             ctx.body = {
@@ -11,6 +11,8 @@ module.exports = ({ app }) => {
             return
         }
         const token = ctx.request.header.authorization.replace('Bearer ', '')
+        // console.log('jwtoptions :>> ', jwtoptions);
+        // console.log('app :>> ', app);
         try {
             const ret = await jwt.verify(token, app.config.jwt.secret)
             ctx.state.email = ret.email
