@@ -1,0 +1,1 @@
+import{s as t}from"./request.c5f95f99.js";const o={url:"http://localhost:7001"};function e(s){return t({url:"/user/register",method:"post",data:s})}function i(s){return t({url:"/asscess/login",method:"post",data:s})}const n="/vite.svg";export{n as _,o as c,i as l,e as r};
